@@ -5,7 +5,7 @@ go 1.21.0
 require (
 	gitee.com/baixudong/tools v0.0.0-20230726070525-d80da902e36d
 	github.com/go-redis/redis v6.15.9+incompatible
-	golang.org/x/exp v0.0.0-20230801115018-d63ba01acd4b
+	golang.org/x/exp v0.0.0-20230811145659-89c5cff77bcb
 )
 
 require (
@@ -19,10 +19,10 @@ require (
 	github.com/onsi/ginkgo v1.16.5 // indirect
 	github.com/onsi/gomega v1.27.10 // indirect
 	github.com/stretchr/testify v1.8.4 // indirect
-	github.com/tidwall/gjson v1.15.0 // indirect
+	github.com/tidwall/gjson v1.16.0 // indirect
 	github.com/tidwall/match v1.1.1 // indirect
 	github.com/tidwall/pretty v1.2.1 // indirect
-	golang.org/x/image v0.10.0 // indirect
-	golang.org/x/net v0.13.0 // indirect
-	golang.org/x/text v0.11.0 // indirect
+	golang.org/x/image v0.11.0 // indirect
+	golang.org/x/net v0.14.0 // indirect
+	golang.org/x/text v0.12.0 // indirect
 )
