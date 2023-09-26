@@ -8,6 +8,7 @@ import (
 	"strconv"
 	"sync"
 
+	"gitee.com/baixudong/bson"
 	"gitee.com/baixudong/tools"
 	"github.com/go-redis/redis"
 	"golang.org/x/exp/slices"
@@ -167,7 +168,7 @@ func (r *Client) GetProxyDatas(key string) ([]Proxy, error) {
 	}
 	proxys := []Proxy{}
 	for _, jsonStr := range vals {
-		val, err := tools.Any2json(jsonStr)
+		val, err := bson.Decode(jsonStr)
 		if err != nil {
 			return nil, err
 		}
