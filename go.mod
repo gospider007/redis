@@ -3,7 +3,7 @@ module gitee.com/baixudong/redis
 go 1.21.1
 
 require (
-	gitee.com/baixudong/bson v0.0.0-20230926055556-209f126c0a34
+	gitee.com/baixudong/gson v0.0.0-20230927054719-a259dd672035
 	gitee.com/baixudong/tools v0.0.0-20230926010219-77f29cbf5935
 	github.com/go-redis/redis v6.15.9+incompatible
 	golang.org/x/exp v0.0.0-20230905200255-921286631fa9

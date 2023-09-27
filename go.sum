@@ -1,11 +1,9 @@
-gitee.com/baixudong/bson v0.0.0-20230926055556-209f126c0a34 h1:s3VYx86Nh3khU3m2AbgYVCHPkA8M1Q2RsWLuI1YsxNM=
-gitee.com/baixudong/bson v0.0.0-20230926055556-209f126c0a34/go.mod h1:dPr7kBl98n0KQ4pseNdKjUWSI5Bz+0Cow9w2PJvYXJ4=
+gitee.com/baixudong/gson v0.0.0-20230927054719-a259dd672035 h1:QE2dgoo2l491fl5UwADXEKz/QEhwcSauzy8IgrIzd0M=
+gitee.com/baixudong/gson v0.0.0-20230927054719-a259dd672035/go.mod h1:4CvQFvuGOT5ZOTHao1004v91EOvQGy8UinMl9Nna+7c=
 gitee.com/baixudong/kinds v0.0.0-20230809033013-c3d6d3479f8c h1:MZewpjU0+82TcA+nHrcAbbgZhTCqVH2I5zwYBWJ4v54=
 gitee.com/baixudong/kinds v0.0.0-20230809033013-c3d6d3479f8c/go.mod h1:J3r4FWnZOMgk7/1EWEEDaPQnx5uH4OLCRzpTOyKg5cA=
 gitee.com/baixudong/re v0.0.0-20230809033040-360c1d945e59 h1:HtdoUzBIqepeVTeeZ0QcPKoQSDqgWQn/fs84fsByJv0=
 gitee.com/baixudong/re v0.0.0-20230809033040-360c1d945e59/go.mod h1:i5L3z/q42lHZvd3JSk3390XdujEY2QHXFMEcaO/uZD0=
-gitee.com/baixudong/tools v0.0.0-20230821075140-7422c51fd918 h1:2X5AmuHDIPCZ1HGnBOxJoBMpFMi9rcWi7uzNtKP23jg=
-gitee.com/baixudong/tools v0.0.0-20230821075140-7422c51fd918/go.mod h1:GWELA4g05Mtq7hx6TRYbc5Mxv+k5NlonfozaoMLhSzw=
 gitee.com/baixudong/tools v0.0.0-20230926010219-77f29cbf5935 h1:+RccqXXfx7yPpwc7Q13z8YZlXFTtqh+A8tlsfd00jS4=
 gitee.com/baixudong/tools v0.0.0-20230926010219-77f29cbf5935/go.mod h1:nGjhspfGKu9Z6knMz0i0riNzk8Q7kmv46qRl+6Wx+rY=
 github.com/andybalholm/brotli v1.0.5 h1:8uQZIdzKmjc/iuPu7O2ioW48L81FgatrcpfFmiq/cCs=
@@ -61,12 +59,9 @@ github.com/pmezard/go-difflib v1.0.0 h1:4DBwDE0NGyQoBHbLQYPwSUPoCMWR5BEzIk/f1lZb
 github.com/pmezard/go-difflib v1.0.0/go.mod h1:iKH77koFhYxTK1pcRnkKkqfTogsbg7gZNVY4sRDYZ/4=
 github.com/stretchr/objx v0.1.0/go.mod h1:HFkY916IF+rwdDfMAkV7OtwuqBVzrE8GR6GFx+wExME=
 github.com/stretchr/testify v1.3.0/go.mod h1:M5WIy9Dh21IEIfnGCwXGc5bZfKNJtfHm1UVUgZn+9EI=
-github.com/stretchr/testify v1.5.1 h1:nOGnQDM7FYENwehXlg/kFVnos3rEvtKTjRvOWSzb6H4=
 github.com/stretchr/testify v1.5.1/go.mod h1:5W2xD1RspED5o8YsWQXVCued0rvSQ+mT+I5cxcmMvtA=
 github.com/stretchr/testify v1.8.4 h1:CcVxjf3Q8PM0mHUKJCdn+eZZtm5yQwehR5yeSVQQcUk=
 github.com/stretchr/testify v1.8.4/go.mod h1:sz/lmYIOXD/1dqDmKjjqLyZ2RngseejIcXlSw2iwfAo=
-github.com/tidwall/gjson v1.16.0 h1:SyXa+dsSPpUlcwEDuKuEBJEz5vzTvOea+9rjyYodQFg=
-github.com/tidwall/gjson v1.16.0/go.mod h1:/wbyibRr2FHMks5tjHJ5F8dMZh3AcwJEMf5vlfC0lxk=
 github.com/tidwall/gjson v1.17.0 h1:/Jocvlh98kcTfpN2+JzGQWQcqrPQwDrVEMApx/M5ZwM=
 github.com/tidwall/gjson v1.17.0/go.mod h1:/wbyibRr2FHMks5tjHJ5F8dMZh3AcwJEMf5vlfC0lxk=
 github.com/tidwall/match v1.1.1 h1:+Ho715JplO36QYgwN9PGYNhgZvoUSc9X2c80KVTi+GA=
@@ -126,6 +121,7 @@ golang.org/x/sys v0.0.0-20220520151302-bc2c85ada10a/go.mod h1:oPkhp1MJrh7nUepCBc
 golang.org/x/sys v0.0.0-20220722155257-8c9f86f7a55f/go.mod h1:oPkhp1MJrh7nUepCBck5+mAzfO9JrbApNNgaTdGDITg=
 golang.org/x/sys v0.5.0/go.mod h1:oPkhp1MJrh7nUepCBck5+mAzfO9JrbApNNgaTdGDITg=
 golang.org/x/sys v0.12.0 h1:CM0HF96J0hcLAwsHPJZjfdNzs0gftsLfgKt57wWHJ0o=
+golang.org/x/sys v0.12.0/go.mod h1:oPkhp1MJrh7nUepCBck5+mAzfO9JrbApNNgaTdGDITg=
 golang.org/x/term v0.0.0-20201126162022-7de9c90e9dd1/go.mod h1:bj7SfCRtBDWHUb9snDiAeCFNEtKQo2Wmx5Cou7ajbmo=
 golang.org/x/term v0.0.0-20210927222741-03fcf44c2211/go.mod h1:jbD1KX2456YbFQfuXm/mYQcufACuNUgVhRMnK/tPxf8=
 golang.org/x/term v0.5.0/go.mod h1:jMB1sMXY+tzblOD4FWmEbocvup2/aLOaQEp7JmGp78k=
