@@ -8,9 +8,9 @@ import (
 	"strconv"
 	"sync"
 
-	"gitee.com/baixudong/gson"
-	"gitee.com/baixudong/tools"
 	"github.com/go-redis/redis"
+	"github.com/gospider007/gson"
+	"github.com/gospider007/tools"
 	"golang.org/x/exp/slices"
 )
 
