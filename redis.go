@@ -20,21 +20,17 @@ type Client struct {
 	lock   sync.Mutex
 }
 type ClientOption struct {
-	Host string //host
-	Port int    //端口号
+	Addr string // 地址
 	Pwd  string //密码
 	Db   int    //数据库
 }
 
 func NewClient(option ClientOption) (*Client, error) {
-	if option.Host == "" {
-		option.Host = "localhost"
-	}
-	if option.Port == 0 {
-		option.Port = 6379
+	if option.Addr == "" {
+		option.Addr = ":6379"
 	}
 	redCli := redis.NewClient(&redis.Options{
-		Addr:     net.JoinHostPort(option.Host, strconv.Itoa(option.Port)),
+		Addr:     option.Addr,
 		DB:       option.Db,
 		Password: option.Pwd,
 	})
