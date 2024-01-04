@@ -43,6 +43,16 @@ func (r *Client) SAdd(name string, vals ...any) (int64, error) {
 	return r.object.SAdd(name, vals...).Result()
 }
 
+// Redis 会员键命令输出作为slince
+func (r *Client) SMembers(key string) ([]string, error) {
+	return r.object.SMembers(key).Result()
+}
+
+// Redis 会员键命令输出作为map
+func (r *Client) SMembersMap(key string) (map[string]struct{}, error) {
+	return r.object.SMembersMap(key).Result()
+}
+
 // 判断元素是否存在集合
 func (r *Client) SExists(name string, val any) (bool, error) {
 	return r.object.SIsMember(name, val).Result()
@@ -70,32 +80,27 @@ func (r *Client) SRem(name string, vals ...any) (int64, error) {
 
 // 获取字典中的key值
 func (r *Client) HGet(name string, key string) (string, error) {
-	cmd := r.object.HGet(name, key)
-	return cmd.Result()
+	return r.object.HGet(name, key).Result()
 }
 
 // 获取字典
 func (r *Client) HAll(name string) (map[string]string, error) {
-	cmd := r.object.HGetAll(name)
-	return cmd.Result()
+	return r.object.HGetAll(name).Result()
 }
 
 // 获取字典所有key
 func (r *Client) HKeys(name string) ([]string, error) {
-	cmd := r.object.HKeys(name)
-	return cmd.Result()
+	return r.object.HKeys(name).Result()
 }
 
 // 获取字典所有值
 func (r *Client) HVals(name string) ([]string, error) {
-	cmd := r.object.HVals(name)
-	return cmd.Result()
+	return r.object.HVals(name).Result()
 }
 
 // 获取字典长度
 func (r *Client) HLen(name string) (int64, error) {
-	cmd := r.object.HLen(name)
-	return cmd.Result()
+	return r.object.HLen(name).Result()
 }
 
 // 设置字典的值

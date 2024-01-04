@@ -4,9 +4,9 @@ go 1.21.3
 
 require (
 	github.com/go-redis/redis v6.15.9+incompatible
-	github.com/gospider007/gson v0.0.0-20231119141525-66095080057d
+	github.com/gospider007/gson v0.0.0-20231215083934-e7762897c4db
 	github.com/gospider007/tools v0.0.0-20231202084937-8b2bc66f8198
-	golang.org/x/exp v0.0.0-20231214170342-aacd6d4b4611
+	golang.org/x/exp v0.0.0-20240103183307-be819d1f06fc
 )
 
 require (
