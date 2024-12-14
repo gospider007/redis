@@ -1,16 +1,19 @@
 package redis
 
 import (
+	"context"
 	"errors"
 	"fmt"
 	"net"
+	"net/url"
 	"sort"
 	"strconv"
 	"sync"
 
-	"github.com/go-redis/redis"
 	"github.com/gospider007/gson"
+	"github.com/gospider007/requests"
 	"github.com/gospider007/tools"
+	"github.com/redis/go-redis/v9"
 	"golang.org/x/exp/slices"
 )
 
@@ -18,99 +21,128 @@ type Client struct {
 	object *redis.Client
 	proxys map[string][]string
 	lock   sync.Mutex
+	ctx    context.Context
 }
 type ClientOption struct {
-	Addr string // 地址
-	Pwd  string //密码
-	Db   int    //数据库
+	Addr        string // 地址
+	Pwd         string //密码
+	Db          int    //数据库
+	Socks5Proxy string // socks5 proxy
+}
+type redisDialer struct {
+	dialer *requests.DialClient
+	proxy  *url.URL
 }
 
-func NewClient(option ClientOption) (*Client, error) {
+func (obj *redisDialer) Dialer(ctx context.Context, network string, addr string) (net.Conn, error) {
+	if obj.proxy != nil {
+		return obj.dialer.Socks5Proxy(ctx, nil, network, obj.proxy, &url.URL{Host: addr})
+	}
+	return obj.dialer.DialContext(ctx, nil, network, addr)
+}
+func NewClient(ctx context.Context, option ClientOption) (*Client, error) {
+	if ctx == nil {
+		ctx = context.TODO()
+	}
 	if option.Addr == "" {
 		option.Addr = ":6379"
+	}
+	redisDia := &redisDialer{
+		dialer: requests.NewDail(requests.DialOption{}),
+	}
+	if option.Socks5Proxy != "" {
+		socks5, err := url.Parse(option.Socks5Proxy)
+		if err != nil {
+			return nil, err
+		}
+		if socks5.Scheme != "socks5" {
+			return nil, fmt.Errorf("invalid socks5 proxy url: %s", option.Socks5Proxy)
+		}
+		redisDia.proxy = socks5
 	}
 	redCli := redis.NewClient(&redis.Options{
 		Addr:     option.Addr,
 		DB:       option.Db,
 		Password: option.Pwd,
+		Dialer:   redisDia.Dialer,
 	})
-	_, err := redCli.Ping().Result()
-	return &Client{object: redCli, proxys: make(map[string][]string)}, err
+	_, err := redCli.Ping(ctx).Result()
+	return &Client{ctx: ctx, object: redCli, proxys: make(map[string][]string)}, err
 }
 
 // 集合增加元素
-func (r *Client) SAdd(name string, vals ...any) (int64, error) {
-	return r.object.SAdd(name, vals...).Result()
+func (r *Client) SAdd(ctx context.Context, name string, vals ...any) (int64, error) {
+	return r.object.SAdd(ctx, name, vals...).Result()
 }
 
 // Redis 会员键命令输出作为slince
-func (r *Client) SMembers(key string) ([]string, error) {
-	return r.object.SMembers(key).Result()
+func (r *Client) SMembers(ctx context.Context, key string) ([]string, error) {
+	return r.object.SMembers(ctx, key).Result()
 }
 
 // Redis 会员键命令输出作为map
-func (r *Client) SMembersMap(key string) (map[string]struct{}, error) {
-	return r.object.SMembersMap(key).Result()
+func (r *Client) SMembersMap(ctx context.Context, key string) (map[string]struct{}, error) {
+	return r.object.SMembersMap(ctx, key).Result()
 }
 
 // 判断元素是否存在集合
-func (r *Client) SExists(name string, val any) (bool, error) {
-	return r.object.SIsMember(name, val).Result()
+func (r *Client) SExists(ctx context.Context, name string, val any) (bool, error) {
+	return r.object.SIsMember(ctx, name, val).Result()
 }
 
 // 集合长度
-func (r *Client) SLen(name string) (int64, error) {
-	return r.object.SCard(name).Result()
+func (r *Client) SLen(ctx context.Context, name string) (int64, error) {
+	return r.object.SCard(ctx, name).Result()
 }
 
 // 集合所有的值
-func (r *Client) SVals(name string) ([]string, error) {
-	return r.object.SMembers(name).Result()
+func (r *Client) SVals(ctx context.Context, name string) ([]string, error) {
+	return r.object.SMembers(ctx, name).Result()
 }
 
 // 删除一个元素返回
-func (r *Client) SPop(name string) (string, error) {
-	return r.object.SPop(name).Result()
+func (r *Client) SPop(ctx context.Context, name string) (string, error) {
+	return r.object.SPop(ctx, name).Result()
 }
 
 // 删除元素
-func (r *Client) SRem(name string, vals ...any) (int64, error) {
-	return r.object.SRem(name, vals...).Result()
+func (r *Client) SRem(ctx context.Context, name string, vals ...any) (int64, error) {
+	return r.object.SRem(ctx, name, vals...).Result()
 }
 
 // 获取字典中的key值
-func (r *Client) HGet(name string, key string) (string, error) {
-	return r.object.HGet(name, key).Result()
+func (r *Client) HGet(ctx context.Context, name string, key string) (string, error) {
+	return r.object.HGet(ctx, name, key).Result()
 }
 
 // 获取字典
-func (r *Client) HAll(name string) (map[string]string, error) {
-	return r.object.HGetAll(name).Result()
+func (r *Client) HAll(ctx context.Context, name string) (map[string]string, error) {
+	return r.object.HGetAll(ctx, name).Result()
 }
 
 // 获取字典所有key
-func (r *Client) HKeys(name string) ([]string, error) {
-	return r.object.HKeys(name).Result()
+func (r *Client) HKeys(ctx context.Context, name string) ([]string, error) {
+	return r.object.HKeys(ctx, name).Result()
 }
 
 // 获取字典所有值
-func (r *Client) HVals(name string) ([]string, error) {
-	return r.object.HVals(name).Result()
+func (r *Client) HVals(ctx context.Context, name string) ([]string, error) {
+	return r.object.HVals(ctx, name).Result()
 }
 
 // 获取字典长度
-func (r *Client) HLen(name string) (int64, error) {
-	return r.object.HLen(name).Result()
+func (r *Client) HLen(ctx context.Context, name string) (int64, error) {
+	return r.object.HLen(ctx, name).Result()
 }
 
 // 设置字典的值
-func (r *Client) HSet(name string, key string, val string) (bool, error) {
-	return r.object.HSet(name, key, val).Result()
+func (r *Client) HSet(ctx context.Context, name string, key string, val string) (int64, error) {
+	return r.object.HSet(ctx, name, key, val).Result()
 }
 
 // 删除字典的值
-func (r *Client) HDel(name string, key string) (int64, error) {
-	return r.object.HDel(name, key).Result()
+func (r *Client) HDel(ctx context.Context, name string, key string) (int64, error) {
+	return r.object.HDel(ctx, name, key).Result()
 }
 
 // 关闭客户端
@@ -129,15 +161,15 @@ type Proxy struct {
 	Proxy string
 }
 
-func (r *Client) GetProxy(key string) (string, error) {
-	vals, err := r.GetProxys(key)
+func (r *Client) GetProxy(ctx context.Context, key string) (string, error) {
+	vals, err := r.GetProxys(ctx, key)
 	if err != nil {
 		return "", err
 	}
 	return vals[0], nil
 }
-func (r *Client) GetRandProxy(key string) (string, error) {
-	vals, err := r.GetProxys(key)
+func (r *Client) GetRandProxy(ctx context.Context, key string) (string, error) {
+	vals, err := r.GetProxys(ctx, key)
 	if err != nil {
 		return "", err
 	}
@@ -145,8 +177,8 @@ func (r *Client) GetRandProxy(key string) (string, error) {
 }
 
 // 获取所有代理
-func (r *Client) GetProxys(key string) ([]string, error) {
-	proxys, err := r.GetProxyDatas(key)
+func (r *Client) GetProxys(ctx context.Context, key string) ([]string, error) {
+	proxys, err := r.GetProxyDatas(ctx, key)
 	if err != nil {
 		return nil, err
 	}
@@ -158,8 +190,8 @@ func (r *Client) GetProxys(key string) ([]string, error) {
 }
 
 // 获取所有代理
-func (r *Client) GetProxyDatas(key string) ([]Proxy, error) {
-	vals, err := r.HVals(key)
+func (r *Client) GetProxyDatas(ctx context.Context, key string) ([]Proxy, error) {
+	vals, err := r.HVals(ctx, key)
 	if err != nil {
 		return nil, err
 	}
@@ -200,8 +232,8 @@ func (r *Client) GetProxyDatas(key string) ([]Proxy, error) {
 }
 
 // 获取所有代理,排序后的
-func (r *Client) GetOrderProxys(key string) ([]string, error) {
-	proxys, err := r.GetProxys(key)
+func (r *Client) GetOrderProxys(ctx context.Context, key string) ([]string, error) {
+	proxys, err := r.GetProxys(ctx, key)
 	if err != nil {
 		return proxys, err
 	}
