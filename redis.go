@@ -72,76 +72,121 @@ func NewClient(ctx context.Context, option ClientOption) (*Client, error) {
 
 // 集合增加元素
 func (r *Client) SAdd(ctx context.Context, name string, vals ...any) (int64, error) {
+	if ctx == nil {
+		ctx = r.ctx
+	}
 	return r.object.SAdd(ctx, name, vals...).Result()
 }
 
 // Redis 会员键命令输出作为slince
 func (r *Client) SMembers(ctx context.Context, key string) ([]string, error) {
+	if ctx == nil {
+		ctx = r.ctx
+	}
 	return r.object.SMembers(ctx, key).Result()
 }
 
 // Redis 会员键命令输出作为map
 func (r *Client) SMembersMap(ctx context.Context, key string) (map[string]struct{}, error) {
+	if ctx == nil {
+		ctx = r.ctx
+	}
 	return r.object.SMembersMap(ctx, key).Result()
 }
 
 // 判断元素是否存在集合
 func (r *Client) SExists(ctx context.Context, name string, val any) (bool, error) {
+	if ctx == nil {
+		ctx = r.ctx
+	}
 	return r.object.SIsMember(ctx, name, val).Result()
 }
 
 // 集合长度
 func (r *Client) SLen(ctx context.Context, name string) (int64, error) {
+	if ctx == nil {
+		ctx = r.ctx
+	}
 	return r.object.SCard(ctx, name).Result()
 }
 
 // 集合所有的值
 func (r *Client) SVals(ctx context.Context, name string) ([]string, error) {
+	if ctx == nil {
+		ctx = r.ctx
+	}
 	return r.object.SMembers(ctx, name).Result()
 }
 
 // 删除一个元素返回
 func (r *Client) SPop(ctx context.Context, name string) (string, error) {
+	if ctx == nil {
+		ctx = r.ctx
+	}
 	return r.object.SPop(ctx, name).Result()
 }
 
 // 删除元素
 func (r *Client) SRem(ctx context.Context, name string, vals ...any) (int64, error) {
+	if ctx == nil {
+		ctx = r.ctx
+	}
 	return r.object.SRem(ctx, name, vals...).Result()
 }
 
 // 获取字典中的key值
 func (r *Client) HGet(ctx context.Context, name string, key string) (string, error) {
+	if ctx == nil {
+		ctx = r.ctx
+	}
 	return r.object.HGet(ctx, name, key).Result()
 }
 
 // 获取字典
 func (r *Client) HAll(ctx context.Context, name string) (map[string]string, error) {
+	if ctx == nil {
+		ctx = r.ctx
+	}
 	return r.object.HGetAll(ctx, name).Result()
 }
 
 // 获取字典所有key
 func (r *Client) HKeys(ctx context.Context, name string) ([]string, error) {
+	if ctx == nil {
+		ctx = r.ctx
+	}
 	return r.object.HKeys(ctx, name).Result()
 }
 
 // 获取字典所有值
 func (r *Client) HVals(ctx context.Context, name string) ([]string, error) {
+	if ctx == nil {
+		ctx = r.ctx
+	}
 	return r.object.HVals(ctx, name).Result()
 }
 
 // 获取字典长度
 func (r *Client) HLen(ctx context.Context, name string) (int64, error) {
+	if ctx == nil {
+		ctx = r.ctx
+	}
 	return r.object.HLen(ctx, name).Result()
 }
 
 // 设置字典的值
 func (r *Client) HSet(ctx context.Context, name string, key string, val string) (int64, error) {
+	if ctx == nil {
+		ctx = r.ctx
+	}
 	return r.object.HSet(ctx, name, key, val).Result()
 }
 
 // 删除字典的值
 func (r *Client) HDel(ctx context.Context, name string, key string) (int64, error) {
+	if ctx == nil {
+		ctx = r.ctx
+	}
 	return r.object.HDel(ctx, name, key).Result()
 }
 
@@ -162,6 +207,9 @@ type Proxy struct {
 }
 
 func (r *Client) GetProxy(ctx context.Context, key string) (string, error) {
+	if ctx == nil {
+		ctx = r.ctx
+	}
 	vals, err := r.GetProxys(ctx, key)
 	if err != nil {
 		return "", err
@@ -169,6 +217,9 @@ func (r *Client) GetProxy(ctx context.Context, key string) (string, error) {
 	return vals[0], nil
 }
 func (r *Client) GetRandProxy(ctx context.Context, key string) (string, error) {
+	if ctx == nil {
+		ctx = r.ctx
+	}
 	vals, err := r.GetProxys(ctx, key)
 	if err != nil {
 		return "", err
@@ -178,6 +229,9 @@ func (r *Client) GetRandProxy(ctx context.Context, key string) (string, error) {
 
 // 获取所有代理
 func (r *Client) GetProxys(ctx context.Context, key string) ([]string, error) {
+	if ctx == nil {
+		ctx = r.ctx
+	}
 	proxys, err := r.GetProxyDatas(ctx, key)
 	if err != nil {
 		return nil, err
@@ -191,6 +245,9 @@ func (r *Client) GetProxys(ctx context.Context, key string) ([]string, error) {
 
 // 获取所有代理
 func (r *Client) GetProxyDatas(ctx context.Context, key string) ([]Proxy, error) {
+	if ctx == nil {
+		ctx = r.ctx
+	}
 	vals, err := r.HVals(ctx, key)
 	if err != nil {
 		return nil, err
@@ -233,6 +290,9 @@ func (r *Client) GetProxyDatas(ctx context.Context, key string) ([]Proxy, error)
 
 // 获取所有代理,排序后的
 func (r *Client) GetOrderProxys(ctx context.Context, key string) ([]string, error) {
+	if ctx == nil {
+		ctx = r.ctx
+	}
 	proxys, err := r.GetProxys(ctx, key)
 	if err != nil {
 		return proxys, err
