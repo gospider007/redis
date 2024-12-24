@@ -30,7 +30,7 @@ type ClientOption struct {
 	Socks5Proxy string // socks5 proxy
 }
 type redisDialer struct {
-	dialer *requests.DialClient
+	dialer *requests.Dialer
 	proxy  *url.URL
 }
 
@@ -48,7 +48,7 @@ func NewClient(ctx context.Context, option ClientOption) (*Client, error) {
 		option.Addr = ":6379"
 	}
 	redisDia := &redisDialer{
-		dialer: requests.NewDail(requests.DialOption{}),
+		dialer: &requests.Dialer{},
 	}
 	if option.Socks5Proxy != "" {
 		socks5, err := url.Parse(option.Socks5Proxy)
