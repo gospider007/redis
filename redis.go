@@ -35,10 +35,18 @@ type redisDialer struct {
 }
 
 func (obj *redisDialer) Dialer(ctx context.Context, network string, addr string) (net.Conn, error) {
-	if obj.proxy != nil {
-		return obj.dialer.Socks5Proxy(ctx, nil, network, obj.proxy, &url.URL{Host: addr})
+	remoteAddrress, err := requests.GetAddressWithAddr(addr)
+	if err != nil {
+		return nil, err
 	}
-	return obj.dialer.DialContext(ctx, nil, network, addr)
+	if obj.proxy != nil {
+		proxyAddress, err := requests.GetAddressWithUrl(obj.proxy)
+		if err != nil {
+			return nil, err
+		}
+		return obj.dialer.Socks5TcpProxy(ctx, nil, proxyAddress, remoteAddrress)
+	}
+	return obj.dialer.DialContext(ctx, nil, network, remoteAddrress)
 }
 func NewClient(ctx context.Context, option ClientOption) (*Client, error) {
 	if ctx == nil {
