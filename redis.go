@@ -290,7 +290,7 @@ func (r *Client) GetProxyDatas(ctx context.Context, key string) ([]Proxy, error)
 		}
 		proxys = append(proxys, proxy)
 	}
-	sort.Slice(proxys, func(i, j int) bool {
+	sort.SliceStable(proxys, func(i, j int) bool {
 		return proxys[i].Ttl > proxys[j].Ttl
 	})
 	return proxys, nil
