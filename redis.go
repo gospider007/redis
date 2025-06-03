@@ -5,12 +5,12 @@ import (
 	"errors"
 	"fmt"
 	"net"
-	"net/url"
 	"sort"
 	"strconv"
 	"sync"
 
 	"github.com/gospider007/gson"
+	"github.com/gospider007/gtls"
 	"github.com/gospider007/requests"
 	"github.com/gospider007/tools"
 	"github.com/redis/go-redis/v9"
@@ -31,7 +31,7 @@ type ClientOption struct {
 }
 type redisDialer struct {
 	dialer *requests.Dialer
-	proxy  *url.URL
+	proxy  *requests.Address
 }
 
 func (obj *redisDialer) Dialer(ctx context.Context, network string, addr string) (net.Conn, error) {
@@ -40,11 +40,7 @@ func (obj *redisDialer) Dialer(ctx context.Context, network string, addr string)
 		return nil, err
 	}
 	if obj.proxy != nil {
-		proxyAddress, err := requests.GetAddressWithUrl(obj.proxy)
-		if err != nil {
-			return nil, err
-		}
-		return obj.dialer.Socks5TcpProxy(requests.NewResponse(ctx, requests.RequestOption{}), proxyAddress, remoteAddrress)
+		return obj.dialer.Socks5TcpProxy(requests.NewResponse(ctx, requests.RequestOption{}), *obj.proxy, remoteAddrress)
 	}
 	return obj.dialer.DialContext(requests.NewResponse(ctx, requests.RequestOption{}), network, remoteAddrress)
 }
@@ -59,14 +55,18 @@ func NewClient(ctx context.Context, option ClientOption) (*Client, error) {
 		dialer: &requests.Dialer{},
 	}
 	if option.Socks5Proxy != "" {
-		socks5, err := url.Parse(option.Socks5Proxy)
+		proxy, err := gtls.VerifyProxy(option.Socks5Proxy)
 		if err != nil {
 			return nil, err
 		}
-		if socks5.Scheme != "socks5" {
-			return nil, fmt.Errorf("invalid socks5 proxy url: %s", option.Socks5Proxy)
+		proxyAddress, err := requests.GetAddressWithUrl(proxy)
+		if err != nil {
+			return nil, err
 		}
-		redisDia.proxy = socks5
+		if proxyAddress.Scheme != "socks5" {
+			return nil, fmt.Errorf("only support socks5 proxy")
+		}
+		redisDia.proxy = &proxyAddress
 	}
 	redCli := redis.NewClient(&redis.Options{
 		Addr:     option.Addr,
