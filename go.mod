@@ -5,7 +5,7 @@ go 1.25
 require (
 	github.com/gospider007/gson v0.0.0-20250815030832-fa016f03a353
 	github.com/gospider007/gtls v0.0.0-20250818100212-f466fa4cc860
-	github.com/gospider007/requests v0.0.0-20250818134656-e75d44e5ddeb
+	github.com/gospider007/requests v0.0.0-20250819020850-d941aad1a256
 	github.com/gospider007/tools v0.0.0-20250815031258-8a81d680917c
 	github.com/redis/go-redis/v9 v9.12.1
 	golang.org/x/exp v0.0.0-20250813145105-42675adae3e6
@@ -87,5 +87,6 @@ require (
 	golang.org/x/sys v0.35.0 // indirect
 	golang.org/x/text v0.28.0 // indirect
 	golang.org/x/tools v0.36.0 // indirect
+	google.golang.org/protobuf v1.36.7 // indirect
 	gopkg.in/errgo.v2 v2.1.0 // indirect
 )
