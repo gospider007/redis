@@ -42,7 +42,8 @@ func (obj *redisDialer) Dialer(ctx context.Context, network string, addr string)
 	if obj.proxy != nil {
 		return obj.dialer.Socks5TcpProxy(requests.NewResponse(ctx, requests.RequestOption{}), *obj.proxy, remoteAddrress)
 	}
-	return obj.dialer.DialContext(requests.NewResponse(ctx, requests.RequestOption{}), network, remoteAddrress)
+	_, conn, err := obj.dialer.DialProxyContext(requests.NewResponse(ctx, requests.RequestOption{}), network, nil, remoteAddrress)
+	return conn, err
 }
 func NewClient(ctx context.Context, option ClientOption) (*Client, error) {
 	if ctx == nil {
