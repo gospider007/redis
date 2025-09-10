@@ -3,9 +3,9 @@ module github.com/gospider007/redis
 go 1.25.0
 
 require (
-	github.com/gospider007/gson v0.0.0-20250904025131-5ec3c322cb42
+	github.com/gospider007/gson v0.0.0-20250910015455-b90779f323c3
 	github.com/gospider007/gtls v0.0.0-20250905095945-312311a3533c
-	github.com/gospider007/netx v0.0.0-20250910013810-66321188f9f7
+	github.com/gospider007/netx v0.0.0-20250910015501-a6a463a34db7
 	github.com/gospider007/tools v0.0.0-20250910013838-e907a1d00f15
 	github.com/redis/go-redis/v9 v9.13.0
 	golang.org/x/exp v0.0.0-20250819193227-8b4c13bb791b
@@ -18,7 +18,7 @@ require (
 	github.com/cespare/xxhash/v2 v2.3.0 // indirect
 	github.com/dgryski/go-rendezvous v0.0.0-20200823014737-9f7001d12a5f // indirect
 	github.com/golang/snappy v1.0.0 // indirect
-	github.com/gospider007/http1 v0.0.0-20250903095546-e1c7d7825c06 // indirect
+	github.com/gospider007/http1 v0.0.0-20250910015455-2a2d4b87b968 // indirect
 	github.com/gospider007/kinds v0.0.0-20250815031133-b2282666f69c // indirect
 	github.com/gospider007/re v0.0.0-20250815031101-a57caeff73bf // indirect
 	github.com/json-iterator/go v1.1.12 // indirect
