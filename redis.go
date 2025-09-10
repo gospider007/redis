@@ -11,7 +11,7 @@ import (
 
 	"github.com/gospider007/gson"
 	"github.com/gospider007/gtls"
-	"github.com/gospider007/requests"
+	"github.com/gospider007/netx"
 	"github.com/gospider007/tools"
 	"github.com/redis/go-redis/v9"
 	"golang.org/x/exp/slices"
@@ -30,19 +30,19 @@ type ClientOption struct {
 	Socks5Proxy string // socks5 proxy
 }
 type redisDialer struct {
-	dialer *requests.Dialer
-	proxy  *requests.Address
+	dialer *netx.Dialer
+	proxy  *netx.Address
 }
 
 func (obj *redisDialer) Dialer(ctx context.Context, network string, addr string) (net.Conn, error) {
-	remoteAddrress, err := requests.GetAddressWithAddr(addr)
+	remoteAddrress, err := netx.GetAddressWithAddr(addr)
 	if err != nil {
 		return nil, err
 	}
 	if obj.proxy != nil {
-		return obj.dialer.Socks5TcpProxy(requests.NewResponse(ctx, requests.RequestOption{}), *obj.proxy, remoteAddrress)
+		return obj.dialer.Socks5TcpProxy((&netx.DialOption{}).NewContext(ctx, false), *obj.proxy, remoteAddrress)
 	}
-	_, conn, err := obj.dialer.DialProxyContext(requests.NewResponse(ctx, requests.RequestOption{}), network, nil, remoteAddrress)
+	_, conn, err := obj.dialer.DialProxyContext((&netx.DialOption{}).NewContext(ctx, false), network, nil, remoteAddrress)
 	return conn, err
 }
 func NewClient(ctx context.Context, option ClientOption) (*Client, error) {
@@ -53,14 +53,14 @@ func NewClient(ctx context.Context, option ClientOption) (*Client, error) {
 		option.Addr = ":6379"
 	}
 	redisDia := &redisDialer{
-		dialer: &requests.Dialer{},
+		dialer: &netx.Dialer{},
 	}
 	if option.Socks5Proxy != "" {
 		proxy, err := gtls.VerifyProxy(option.Socks5Proxy)
 		if err != nil {
 			return nil, err
 		}
-		proxyAddress, err := requests.GetAddressWithUrl(proxy)
+		proxyAddress, err := netx.GetAddressWithUrl(proxy)
 		if err != nil {
 			return nil, err
 		}
