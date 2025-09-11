@@ -7,7 +7,7 @@ require (
 	github.com/gospider007/gtls v0.0.0-20250910020216-c6f8cdd432fc
 	github.com/gospider007/netx v0.0.0-20250910032117-7c1a4db1581d
 	github.com/gospider007/tools v0.0.0-20250910013838-e907a1d00f15
-	github.com/redis/go-redis/v9 v9.13.0
+	github.com/redis/go-redis/v9 v9.14.0
 	golang.org/x/exp v0.0.0-20250819193227-8b4c13bb791b
 )
 
@@ -58,5 +58,5 @@ require (
 	golang.org/x/sync v0.17.0 // indirect
 	golang.org/x/sys v0.36.0 // indirect
 	golang.org/x/text v0.29.0 // indirect
-	golang.org/x/tools v0.36.0 // indirect
+	golang.org/x/tools v0.37.0 // indirect
 )
