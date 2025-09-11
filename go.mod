@@ -5,7 +5,7 @@ go 1.25.0
 require (
 	github.com/gospider007/gson v0.0.0-20250910015455-b90779f323c3
 	github.com/gospider007/gtls v0.0.0-20250910020216-c6f8cdd432fc
-	github.com/gospider007/netx v0.0.0-20250910032117-7c1a4db1581d
+	github.com/gospider007/netx v0.0.0-20250911054754-c7009747c235
 	github.com/gospider007/tools v0.0.0-20250910013838-e907a1d00f15
 	github.com/redis/go-redis/v9 v9.14.0
 	golang.org/x/exp v0.0.0-20250819193227-8b4c13bb791b
@@ -24,7 +24,7 @@ require (
 	github.com/golang/snappy v1.0.0 // indirect
 	github.com/google/gopacket v1.1.19 // indirect
 	github.com/google/pprof v0.0.0-20250903194437-c28834ac2320 // indirect
-	github.com/gospider007/http1 v0.0.0-20250910015455-2a2d4b87b968 // indirect
+	github.com/gospider007/http1 v0.0.0-20250911054749-f39451170c35 // indirect
 	github.com/gospider007/ja3 v0.0.0-20250908031106-827812269efe // indirect
 	github.com/gospider007/kinds v0.0.0-20250815031133-b2282666f69c // indirect
 	github.com/gospider007/re v0.0.0-20250815031101-a57caeff73bf // indirect
