@@ -3,9 +3,9 @@ module github.com/gospider007/redis
 go 1.25.0
 
 require (
-	github.com/gospider007/gson v0.0.0-20250910015455-b90779f323c3
-	github.com/gospider007/gtls v0.0.0-20250923093023-0112ed911e62
-	github.com/gospider007/netx v0.0.0-20250923093023-99d8c78d1405
+	github.com/gospider007/gson v0.0.0-20250923093120-5ae8a0e86b11
+	github.com/gospider007/gtls v0.0.0-20250923093128-da16404c2526
+	github.com/gospider007/netx v0.0.0-20250923093149-2e2f642f98c4
 	github.com/gospider007/tools v0.0.0-20250923093005-512399316eb4
 	github.com/redis/go-redis/v9 v9.14.0
 	golang.org/x/exp v0.0.0-20250911091902-df9299821621
