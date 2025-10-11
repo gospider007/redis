@@ -40,9 +40,9 @@ func (obj *redisDialer) Dialer(ctx context.Context, network string, addr string)
 		return nil, err
 	}
 	if obj.proxy != nil {
-		return obj.dialer.Socks5TcpProxy((&netx.DialOption{}).NewContext(ctx, false), *obj.proxy, remoteAddrress)
+		return obj.dialer.Socks5TcpProxy(ctx, nil, *obj.proxy, remoteAddrress)
 	}
-	_, conn, err := obj.dialer.DialProxyContext((&netx.DialOption{}).NewContext(ctx, false), network, nil, remoteAddrress)
+	conn, err := obj.dialer.DialContext(ctx, nil, network, remoteAddrress)
 	return conn, err
 }
 func NewClient(ctx context.Context, option ClientOption) (*Client, error) {
