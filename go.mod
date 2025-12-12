@@ -5,7 +5,7 @@ go 1.25.0
 require (
 	github.com/gospider007/gson v0.0.0-20251212071615-e48ad37a0a39
 	github.com/gospider007/gtls v0.0.0-20251212071614-eb0942406856
-	github.com/gospider007/netx v0.0.0-20251212071616-60feb8ffb18e
+	github.com/gospider007/netx v0.0.0-20251212071803-6c916d7a5bba
 	github.com/gospider007/tools v0.0.0-20251212071315-d05548ab517e
 	github.com/redis/go-redis/v9 v9.17.2
 	golang.org/x/exp v0.0.0-20251209150349-8475f28825e9
