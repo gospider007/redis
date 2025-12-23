@@ -8,7 +8,7 @@ require (
 	github.com/gospider007/netx v0.0.0-20251213090015-b200d0fcc7d2
 	github.com/gospider007/tools v0.0.0-20251212071315-d05548ab517e
 	github.com/redis/go-redis/v9 v9.17.2
-	golang.org/x/exp v0.0.0-20251209150349-8475f28825e9
+	golang.org/x/exp v0.0.0-20251219203646-944ab1f22d93
 )
 
 require (
@@ -43,7 +43,7 @@ require (
 	github.com/modern-go/reflect2 v1.0.3-0.20250322232337-35a7c28c31ee // indirect
 	github.com/onsi/ginkgo/v2 v2.27.3 // indirect
 	github.com/quic-go/qpack v0.6.0 // indirect
-	github.com/quic-go/quic-go v0.57.1 // indirect
+	github.com/quic-go/quic-go v0.58.0 // indirect
 	github.com/refraction-networking/uquic v0.0.6 // indirect
 	github.com/refraction-networking/utls v1.8.1 // indirect
 	github.com/tidwall/gjson v1.18.0 // indirect
