@@ -8,7 +8,7 @@ require (
 	github.com/gospider007/netx v0.0.0-20260211091933-7dbc19c42125
 	github.com/gospider007/tools v0.0.0-20260211061019-053e0e2f25af
 	github.com/redis/go-redis/v9 v9.17.3
-	golang.org/x/exp v0.0.0-20260209203927-2842357ff358
+	golang.org/x/exp v0.0.0-20260212183809-81e46e3db34a
 )
 
 require (
