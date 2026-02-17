@@ -7,7 +7,7 @@ require (
 	github.com/gospider007/gtls v0.0.0-20260213010036-45d78ef0e7c7
 	github.com/gospider007/netx v0.0.0-20260215151612-cec96655ec10
 	github.com/gospider007/tools v0.0.0-20260211061019-053e0e2f25af
-	github.com/redis/go-redis/v9 v9.17.3
+	github.com/redis/go-redis/v9 v9.18.0
 	golang.org/x/exp v0.0.0-20260212183809-81e46e3db34a
 )
 
@@ -15,7 +15,7 @@ require (
 	github.com/Masterminds/semver/v3 v3.4.0 // indirect
 	github.com/andybalholm/brotli v1.2.0 // indirect
 	github.com/caddyserver/certmagic v0.25.1 // indirect
-	github.com/caddyserver/zerossl v0.1.4 // indirect
+	github.com/caddyserver/zerossl v0.1.5 // indirect
 	github.com/cespare/xxhash/v2 v2.3.0 // indirect
 	github.com/dgryski/go-rendezvous v0.0.0-20200823014737-9f7001d12a5f // indirect
 	github.com/gaukas/clienthellod v0.4.2 // indirect
@@ -52,6 +52,7 @@ require (
 	github.com/tidwall/sjson v1.2.5 // indirect
 	github.com/zeebo/blake3 v0.2.4 // indirect
 	go.mongodb.org/mongo-driver v1.17.9 // indirect
+	go.uber.org/atomic v1.11.0 // indirect
 	go.uber.org/mock v0.6.0 // indirect
 	go.uber.org/multierr v1.11.0 // indirect
 	go.uber.org/zap v1.27.1 // indirect
