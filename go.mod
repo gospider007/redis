@@ -4,8 +4,8 @@ go 1.26.0
 
 require (
 	github.com/gospider007/gson v0.0.0-20260304014954-04eb162a02af
-	github.com/gospider007/gtls v0.0.0-20260304014953-ad0ed12fcf02
-	github.com/gospider007/netx v0.0.0-20260304014956-adaca57f6487
+	github.com/gospider007/gtls v0.0.0-20260304015036-a997602ca753
+	github.com/gospider007/netx v0.0.0-20260304015049-b41d54a2187a
 	github.com/gospider007/tools v0.0.0-20260304014714-6d157d4524d2
 	github.com/redis/go-redis/v9 v9.18.0
 	golang.org/x/exp v0.0.0-20260218203240-3dfff04db8fa
@@ -26,7 +26,7 @@ require (
 	github.com/google/pprof v0.0.0-20260302011040-a15ffb7f9dcc // indirect
 	github.com/gospider007/conf v0.0.0-20260304014953-1bc774a8226f // indirect
 	github.com/gospider007/http1 v0.0.0-20260304014956-ea3ba9d793d0 // indirect
-	github.com/gospider007/http2 v0.0.0-20260304014953-6bfcaef8469e // indirect
+	github.com/gospider007/http2 v0.0.0-20260304015043-8b2cf3eb7c80 // indirect
 	github.com/gospider007/http3 v0.0.0-20260304015040-0bd8aa9a1483 // indirect
 	github.com/gospider007/ja3 v0.0.0-20260304014955-6843df4d7e08 // indirect
 	github.com/gospider007/kinds v0.0.0-20260211060834-06a10e2431d8 // indirect
