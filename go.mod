@@ -1,6 +1,6 @@
 module github.com/gospider007/redis
 
-go 1.26.0
+go 1.27.0
 
 require (
 	github.com/gospider007/gson v0.0.0-20260511020832-fca3d6f5d91a
